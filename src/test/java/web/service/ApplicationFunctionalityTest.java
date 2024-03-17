@@ -70,6 +70,29 @@ public class ApplicationFunctionalityTest {
         WebElement submitButton = driver.findElement(By.cssSelector("input[type='submit']"));
         submitButton.click();
         
+        Assert.assertEquals("http://localhost:8080/q2", driver.getCurrentUrl());
+	}
+	
+	@Test
+    public void testQ2PageAfterQ1() {
+
+		testQ1PageAfterLogin();
+        driver.get("http://localhost:8080/q2");
+        
+        WebElement firstNumberInput = driver.findElement(By.name("number1"));
+        WebElement secondNumberInput = driver.findElement(By.name("number2"));
+        WebElement resultInput = driver.findElement(By.name("result"));
+        
+        firstNumberInput.sendKeys("20");
+        secondNumberInput.sendKeys("10");
+        resultInput.sendKeys("10");
+
+        WebElement submitButton = driver.findElement(By.cssSelector("input[type='submit']"));
+        submitButton.click();
+        
+        sleep(5);
+        Assert.assertEquals("http://localhost:8080/q3", driver.getCurrentUrl());
+        
         driver.close(); 
 	}
 }
